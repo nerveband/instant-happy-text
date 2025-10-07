@@ -1,6 +1,6 @@
 # Instant Happy Text
 
-AI-powered note editor that auto-corrects your sloppy notes, one line at a time.
+Type messy thoughts, get polished text — AI cleanup on every Enter.
 
 **Live Demo:** https://tidy-text-ai.netlify.app
 
