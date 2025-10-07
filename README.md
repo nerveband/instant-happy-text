@@ -1,4 +1,4 @@
-# Tidy Text Redux
+# Instant Happy Text
 
 AI-powered note editor that auto-corrects your sloppy notes, one line at a time.
 
@@ -8,7 +8,7 @@ AI-powered note editor that auto-corrects your sloppy notes, one line at a time.
 
 This is a fork and remix of [Tidy Text](https://gist.github.com/getflourish/be3b98c0ce866c17e2c21b5c3d2e9163) by [Florian Schulz](https://blog.florianschulz.info/2025/10/tidy-text-sloppy-notes/).
 
-### Enhancements in Redux
+### Enhancements
 - Support for multiple AI providers (Google Gemini & Cerebras)
 - Per-line undo/redo with hover controls
 - AI-powered word alternatives (click any word)
