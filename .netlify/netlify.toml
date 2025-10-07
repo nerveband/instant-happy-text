@@ -9,7 +9,6 @@ headers = []
 [build]
 publish = "/Users/nerveband/wavedepth Dropbox/Ashraf Ali/Mac (2)/Documents/GitHub/instant-happy-text"
 publishOrigin = "default"
-base = "/Users/nerveband/wavedepth Dropbox/Ashraf Ali/Mac (2)/Documents/GitHub/instant-happy-text"
 
 [build.environment]
 
