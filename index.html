@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
             background: #000;
             min-height: 100vh;
-            padding: 2rem;
+            padding: clamp(1rem, 3vw, 2rem);
             color: #000;
         }
 
@@ -24,12 +24,12 @@
             margin: 0 auto;
             background: #fff;
             border: 2px solid #000;
-            padding: 3rem;
-            box-shadow: 8px 8px 0 rgba(0, 0, 0, 1);
+            padding: clamp(1.5rem, 4vw, 3rem);
+            box-shadow: clamp(4px, 1vw, 8px) clamp(4px, 1vw, 8px) 0 rgba(0, 0, 0, 1);
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 0.5rem;
             color: #000;
             font-weight: 700;
@@ -38,16 +38,16 @@
 
         .subtitle {
             color: #666;
-            margin-bottom: 2rem;
-            font-size: 1rem;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
             font-weight: 400;
         }
 
         .settings {
             display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 2rem;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            padding: clamp(1rem, 3vw, 2rem);
             background: #f5f5f5;
             border: 2px solid #000;
         }
@@ -60,20 +60,104 @@
 
         label {
             font-weight: 600;
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
             color: #000;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        input, select, textarea {
-            padding: 0.875rem;
+        input, textarea {
+            padding: clamp(0.75rem, 2vw, 0.875rem);
             border: 2px solid #000;
-            font-size: 1rem;
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
             font-family: inherit;
             background: #fff;
             transition: all 0.15s ease;
             resize: vertical;
+        }
+
+        /* Custom Select Dropdown */
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select select {
+            display: none;
+        }
+
+        .select-selected {
+            background: #fff;
+            border: 2px solid #000;
+            padding: clamp(0.75rem, 2vw, 0.875rem);
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.15s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .select-selected:after {
+            content: '▼';
+            font-size: 0.75em;
+            color: #000;
+            transition: transform 0.15s ease;
+        }
+
+        .select-selected.select-arrow-active:after {
+            transform: rotate(180deg);
+        }
+
+        .select-selected:hover {
+            box-shadow: 2px 2px 0 rgba(0, 0, 0, 1);
+            transform: translate(-1px, -1px);
+        }
+
+        .select-items {
+            position: absolute;
+            background: #fff;
+            border: 2px solid #000;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            z-index: 99;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 1);
+        }
+
+        .select-items div {
+            padding: clamp(0.75rem, 2vw, 0.875rem);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.1s ease;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+        }
+
+        .select-items div:last-child {
+            border-bottom: none;
+        }
+
+        .select-items div:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .select-hide {
+            display: none;
+        }
+
+        select {
+            padding: clamp(0.75rem, 2vw, 0.875rem);
+            border: 2px solid #000;
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+            font-family: inherit;
+            background: #fff;
+            transition: all 0.15s ease;
         }
 
         input:focus, select:focus, textarea:focus {
@@ -109,15 +193,21 @@
 
         .editor {
             width: 100%;
-            min-height: 450px;
-            padding: 2rem;
+            min-height: clamp(300px, 60vh, 450px);
+            padding: clamp(1rem, 3vw, 2rem);
             border: none;
             resize: vertical;
             font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', monospace;
-            font-size: 1.125rem;
-            line-height: 2;
+            font-size: clamp(0.9375rem, 2.5vw, 1.125rem);
+            line-height: 1.8;
             background: transparent;
             color: #000;
+        }
+
+        @media (min-width: 768px) {
+            .editor {
+                line-height: 2;
+            }
         }
 
         .editor:focus {
@@ -205,11 +295,11 @@
         .status {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1.25rem;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
+            padding: clamp(1rem, 3vw, 1.25rem);
             background: #f5f5f5;
             border: 2px solid #000;
-            font-size: 0.875rem;
+            font-size: clamp(0.8125rem, 2vw, 0.875rem);
             color: #000;
             font-weight: 500;
         }
@@ -252,31 +342,37 @@
         }
 
         .hint {
-            font-size: 0.875rem;
+            font-size: clamp(0.8125rem, 2vw, 0.875rem);
             color: #666;
-            margin-top: 1.5rem;
+            margin-top: clamp(1rem, 3vw, 1.5rem);
             line-height: 1.6;
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: clamp(0.5rem, 1.5vw, 0.75rem);
+            margin-top: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            padding: clamp(1rem, 3vw, 1.5rem);
             background: #f5f5f5;
             border: 2px solid #000;
+        }
+
+        @media (max-width: 480px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
 
         .feature-toggle {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
         }
 
         .feature-label {
-            font-size: 0.875rem;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -331,10 +427,10 @@
         }
 
         .credits {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: clamp(1rem, 3vw, 2rem);
+            padding-top: clamp(1rem, 3vw, 1.5rem);
             border-top: 2px solid #000;
-            font-size: 0.875rem;
+            font-size: clamp(0.8125rem, 2vw, 0.875rem);
             color: #666;
             line-height: 1.6;
         }
@@ -350,6 +446,14 @@
             background: #000;
             color: #fff;
         }
+
+        /* Touch-friendly controls on mobile */
+        @media (max-width: 768px) {
+            .line-control-btn {
+                width: 48px;
+                height: 48px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -360,10 +464,12 @@
         <div class="settings">
             <div class="setting-group">
                 <label>Provider</label>
-                <select id="provider">
-                    <option value="gemini">Google Gemini</option>
-                    <option value="cerebras">Cerebras</option>
-                </select>
+                <div class="custom-select">
+                    <select id="provider">
+                        <option value="gemini">Google Gemini</option>
+                        <option value="cerebras">Cerebras</option>
+                    </select>
+                </div>
             </div>
             <div class="setting-group">
                 <label>API Key</label>
@@ -371,10 +477,12 @@
             </div>
             <div class="setting-group" id="modelGroup">
                 <label>Model</label>
-                <select id="model">
-                    <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (Fastest)</option>
-                    <option value="gemini-2.5-flash">gemini-2.5-flash</option>
-                </select>
+                <div class="custom-select">
+                    <select id="model">
+                        <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (Fastest)</option>
+                        <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                    </select>
+                </div>
             </div>
             <div class="setting-group">
                 <label>Custom System Prompt (Optional)</label>
@@ -465,6 +573,72 @@ Try it:
     <script type="module">
         import { GoogleGenAI } from 'https://esm.run/@google/genai';
 
+        // Initialize custom dropdowns
+        function initCustomSelects() {
+            const customSelects = document.querySelectorAll('.custom-select');
+
+            customSelects.forEach(customSelect => {
+                const select = customSelect.querySelector('select');
+                const selected = document.createElement('div');
+                selected.className = 'select-selected';
+                selected.textContent = select.options[select.selectedIndex].text;
+                customSelect.appendChild(selected);
+
+                const items = document.createElement('div');
+                items.className = 'select-items select-hide';
+
+                Array.from(select.options).forEach((option, index) => {
+                    const item = document.createElement('div');
+                    item.textContent = option.text;
+                    item.dataset.value = option.value;
+
+                    item.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        select.selectedIndex = index;
+                        selected.textContent = this.textContent;
+
+                        // Trigger change event on the original select
+                        const event = new Event('change', { bubbles: true });
+                        select.dispatchEvent(event);
+
+                        // Close dropdown
+                        items.classList.add('select-hide');
+                        selected.classList.remove('select-arrow-active');
+                    });
+
+                    items.appendChild(item);
+                });
+
+                customSelect.appendChild(items);
+
+                // Toggle dropdown
+                selected.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeAllSelect(this);
+                    this.classList.toggle('select-arrow-active');
+                    items.classList.toggle('select-hide');
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', closeAllSelect);
+
+            function closeAllSelect(element) {
+                const items = document.querySelectorAll('.select-items');
+                const selected = document.querySelectorAll('.select-selected');
+
+                items.forEach((item, index) => {
+                    if (element !== selected[index]) {
+                        item.classList.add('select-hide');
+                        selected[index].classList.remove('select-arrow-active');
+                    }
+                });
+            }
+        }
+
+        // Initialize on load
+        initCustomSelects();
+
         const editor = document.getElementById('editor');
         const apiKeyInput = document.getElementById('apiKey');
         const providerSelect = document.getElementById('provider');
@@ -549,6 +723,15 @@ Try it:
             } else {
                 modelGroup.style.display = 'flex';
                 apiKeyInput.placeholder = 'Enter Google AI Studio API key';
+            }
+
+            // Update custom select display
+            const providerCustomSelect = providerSelect.closest('.custom-select');
+            if (providerCustomSelect) {
+                const selected = providerCustomSelect.querySelector('.select-selected');
+                if (selected) {
+                    selected.textContent = providerSelect.options[providerSelect.selectedIndex].text;
+                }
             }
         }
 
